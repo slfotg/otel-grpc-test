@@ -1,0 +1,40 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/java
+{
+    "name": "otel-grpc-app",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "initializeCommand": "docker network inspect otel_grpc_network >/dev/null 2>&1 || docker network create --driver bridge otel_grpc_network",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "features": {
+        "ghcr.io/devcontainers/features/java:1": {
+            "version": "none",
+            "installMaven": "true",
+            "installGradle": "false"
+        },
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": true,
+            "configureZshAsDefaultShell": true,
+            "installOhMyZsh": true,
+            "installOhMyZshConfig": true,
+            "upgradePackages": true
+        },
+        "ghcr.io/dhoeric/features/google-cloud-cli:1": {}
+    },
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+    "forwardPorts": [
+        9010,
+        9020
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "esbenp.prettier-vscode",
+                "ms-azuretools.vscode-docker",
+                "zxh404.vscode-proto3",
+                "DotJoshJohnson.xml"
+            ]
+        }
+    }
+}

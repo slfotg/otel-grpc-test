@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_package = "io.github.slfotg.otel.grpc";
+option java_outer_classname = "HelloWorldProto";
+option java_multiple_files = true;
+
+service HelloService {
+    rpc SayHello (HelloRequest) returns (HelloReply) {
+    }
+}
+
+message HelloRequest {
+    message Name {
+        string first = 1;
+        string last = 2;
+    }
+    Name name = 1;
+    int32 age = 2;
+    map<string, string> metadata = 3; // new field
+}
+
+message HelloReply {
+    string message = 1;
+    map<string, string> metadata = 2; // new field
+}

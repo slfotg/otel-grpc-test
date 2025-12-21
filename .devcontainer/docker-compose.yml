@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: otel-grpc-app
+    image: mcr.microsoft.com/devcontainers/java:1-21-bullseye
+
+    networks:
+      - otel_grpc_network
+
+    volumes:
+      - ../..:/workspaces:cached
+
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+
+    # Use "forwardPorts" in **devcontainer.json** to forward an app port locally.
+    # (Adding the "ports" property to this file will not forward from a Codespace.)
+
+  otel-collector:
+    container_name: collector
+    image: otel/opentelemetry-collector-contrib:0.101.0
+    command:
+      - "--config"
+      - "/otel-local-config.yaml"
+    volumes:
+      - ../collector.config.yaml:/otel-local-config.yaml
+    networks:
+      - otel_grpc_network
+    ports:
+      - 4317:4317
+    depends_on:
+      jaeger:
+        condition: service_started
+
+  jaeger:
+    container_name: jaeger
+    image: jaegertracing/all-in-one:latest
+    restart: unless-stopped
+    networks:
+      - otel_grpc_network
+    ports:
+      - 16686:16686
+      - 16685:16685
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "localhost:16686"]
+      interval: 1s
+      timeout: 3s
+      retries: 60
+
+networks:
+  otel_grpc_network:
+    name: otel_grpc_network
+    external: true
