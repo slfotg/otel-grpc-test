@@ -4,10 +4,10 @@ import java.io.IOException;
 
 import dagger.grpc.server.NettyServerModule;
 import io.grpc.Server;
+import io.opentelemetry.sdk.autoconfigure.AutoConfiguredOpenTelemetrySdk;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
         int port = 8888;
         HelloComponent component = DaggerHelloComponent.builder()
                 .nettyServerModule(NettyServerModule.bindingToPort(port))

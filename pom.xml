@@ -30,8 +30,9 @@
         <annotations-api.version>6.0.53</annotations-api.version>
 
         <!-- OpenTelemetry -->
-        <otel.version>1.27.0</otel.version>
-        <otel.exporter.otlp.version>1.27.0</otel.exporter.otlp.version>
+        <otel.version>1.57.0</otel.version>
+        <otel.instrumentation.version>2.23.0</otel.instrumentation.version>
+        <otel.exporter.otlp.version>1.57.0</otel.exporter.otlp.version>
     </properties>
 
     <dependencyManagement>
@@ -122,14 +123,39 @@
             <!-- OpenTelemetry SDK & OTLP exporter (available to modules via dependencyManagement) -->
             <dependency>
                 <groupId>io.opentelemetry</groupId>
-                <artifactId>opentelemetry-api</artifactId>
+                <artifactId>opentelemetry-bom</artifactId>
                 <version>${otel.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
+                <groupId>io.opentelemetry.instrumentation</groupId>
+                <artifactId>opentelemetry-instrumentation-bom</artifactId>
+                <version>${otel.instrumentation.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.opentelemetry.instrumentation</groupId>
+                <artifactId>opentelemetry-grpc-1.6</artifactId>
+                <version>${otel.instrumentation.version}-alpha</version>
+            </dependency>
+            <!-- <dependency>
                 <groupId>io.opentelemetry</groupId>
                 <artifactId>opentelemetry-sdk</artifactId>
                 <version>${otel.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>io.opentelemetry</groupId>
+                <artifactId>opentelemetry-exporter-otlp</artifactId>
+                <version>${otel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.opentelemetry</groupId>
+                <artifactId>opentelemetry-sdk-extension-autoconfigure</artifactId>
+                <version>${otel.version}</version>
+            </dependency> -->
         </dependencies>
     </dependencyManagement>
 
