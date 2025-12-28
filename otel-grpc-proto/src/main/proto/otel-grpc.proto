@@ -1,25 +1,27 @@
 syntax = "proto3";
 
 option java_package = "io.github.slfotg.otel.grpc";
-option java_outer_classname = "HelloWorldProto";
+option java_outer_classname = "RssProto";
 option java_multiple_files = true;
 
-service HelloService {
-    rpc SayHello (HelloRequest) returns (HelloReply) {
-    }
+service RssFeed {
+    rpc Subscribe (stream RssRequest) returns (stream RssItem) {}
+    rpc Test (RssRequest) returns (TestResponse) {}
 }
 
-message HelloRequest {
-    message Name {
-        string first = 1;
-        string last = 2;
-    }
-    Name name = 1;
-    int32 age = 2;
-    map<string, string> metadata = 3; // new field
-}
-
-message HelloReply {
+message TestResponse {
     string message = 1;
-    map<string, string> metadata = 2; // new field
+}
+
+message RssRequest {
+    string url = 1;
+    map<string, string> metadata = 2;
+}
+
+message RssItem {
+    string title = 1;
+    string link = 2;
+    string description = 3;
+    string guid = 4;
+    map<string, string> metadata = 5;
 }

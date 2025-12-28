@@ -9,9 +9,9 @@ import dagger.grpc.server.NettyServerModule;
 @Singleton
 @Component(modules = {
         NettyServerModule.class,
-        HelloUnscopedGrpcServiceModule.class,
-        HelloModule.class,
+        RssFeedServiceUnscopedGrpcServiceModule.class,
+        RssModule.class,
 })
-interface HelloComponent extends HelloServiceDefinition {
+interface RssComponent extends RssFeedServiceServiceDefinition {
     Server server();
 }

@@ -33,8 +33,18 @@
                 "esbenp.prettier-vscode",
                 "ms-azuretools.vscode-docker",
                 "zxh404.vscode-proto3",
-                "DotJoshJohnson.xml"
+                "DotJoshJohnson.xml",
+                "redhat.vscode-xml"
             ]
         }
-    }
+    },
+    "containerEnv": {
+        "OTEL_EXPORTER_OTLP_ENDPOINT": "http://collector:4317",
+        "OTEL_EXPORTER_OTLP_PROTOCOL": "grpc",
+        "OTEL_TRACES_EXPORTER": "otlp",
+        "OTEL_METRICS_EXPORTER": "none",
+        "OTEL_LOGS_EXPORTER": "none",
+        "OTEL_JAVAAGENT_ENABLED": "true"
+    },
+    "postCreateCommand": "wget https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v1.27.0/opentelemetry-javaagent.jar -O /home/vscode/opentelemetry-javaagent.jar"
 }

@@ -6,23 +6,31 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Current File",
+            "name": "Cli",
+            "env": {
+                "OTEL_SERVICE_NAME": "rss-client",
+                "JAVA_TOOL_OPTIONS": "-javaagent:/home/vscode/opentelemetry-javaagent.jar"
+            },
             "request": "launch",
-            "mainClass": "${file}"
-        },
-        {
-            "type": "java",
-            "name": "Main",
-            "request": "launch",
-            "mainClass": "io.github.slfotg.otel.Main",
+            "mainClass": "io.github.slfotg.otel.Cli",
             "projectName": "otel-grpc-client"
         },
         {
             "type": "java",
-            "name": "Main(1)",
+            "name": "Run Server",
+            "env": {
+                "OTEL_SERVICE_NAME": "rss-service",
+                "JAVA_TOOL_OPTIONS": "-javaagent:/home/vscode/opentelemetry-javaagent.jar"
+            },
             "request": "launch",
             "mainClass": "io.github.slfotg.otel.Main",
             "projectName": "otel-grpc-service-container"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
         }
     ]
 }

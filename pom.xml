@@ -33,6 +33,12 @@
         <otel.version>1.57.0</otel.version>
         <otel.instrumentation.version>2.23.0</otel.instrumentation.version>
         <otel.exporter.otlp.version>1.57.0</otel.exporter.otlp.version>
+
+        <com.rometools.version>2.1.0</com.rometools.version>
+        <no.entur.mapstruct.spi.version>1.52.0</no.entur.mapstruct.spi.version>
+
+        <info.picocli.version>4.7.7</info.picocli.version>
+        <org.jline.version>3.30.6</org.jline.version>
     </properties>
 
     <dependencyManagement>
@@ -135,27 +141,35 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!-- RSS -->
             <dependency>
-                <groupId>io.opentelemetry.instrumentation</groupId>
-                <artifactId>opentelemetry-grpc-1.6</artifactId>
-                <version>${otel.instrumentation.version}-alpha</version>
-            </dependency>
-            <!-- <dependency>
-                <groupId>io.opentelemetry</groupId>
-                <artifactId>opentelemetry-sdk</artifactId>
-                <version>${otel.version}</version>
+                <groupId>com.rometools</groupId>
+                <artifactId>rome</artifactId>
+                <version>${com.rometools.version}</version>
             </dependency>
 
+            <!-- Command Line -->
             <dependency>
-                <groupId>io.opentelemetry</groupId>
-                <artifactId>opentelemetry-exporter-otlp</artifactId>
-                <version>${otel.version}</version>
+                <groupId>info.picocli</groupId>
+                <artifactId>picocli</artifactId>
+                <version>${info.picocli.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.opentelemetry</groupId>
-                <artifactId>opentelemetry-sdk-extension-autoconfigure</artifactId>
-                <version>${otel.version}</version>
-            </dependency> -->
+                <groupId>info.picocli</groupId>
+                <artifactId>picocli-shell-jline3</artifactId>
+                <version>${info.picocli.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jline</groupId>
+                <artifactId>jline</artifactId>
+                <version>${org.jline.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jline</groupId>
+                <artifactId>jline-terminal-ffm</artifactId>
+                <version>${org.jline.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

@@ -34,9 +34,13 @@
             <groupId>io.opentelemetry</groupId>
             <artifactId>opentelemetry-sdk-extension-autoconfigure</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.opentelemetry.instrumentation</groupId>
+            <artifactId>opentelemetry-instrumentation-annotations</artifactId>
+        </dependency>
     </dependencies>
 
-    <build>
+    <!-- <build>
         <plugins>
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -69,6 +73,9 @@
                             <run>
                                 <namingStrategy>alias</namingStrategy>
                                 <net>otel_grpc_network</net>
+                                <ports>
+                                    <port>8888:8888</port>
+                                </ports>
                             </run>
                         </image>
                     </images>
@@ -83,6 +90,6 @@
                 </executions>
             </plugin>
         </plugins>
-    </build>
+    </build> -->
 
 </project>
